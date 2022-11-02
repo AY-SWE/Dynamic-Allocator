@@ -177,15 +177,6 @@ The footer of a block must contain exactly the same information as the header.
 > Note that a block cannot be smaller than 32 bytes, as there there would not then
 > be enough space to store the header, footer, and freelist links when the block is free.
 
-# Getting Started
-
-Fetch and merge the base code for `hw3` as described in `hw0` from the
-following link: https://gitlab02.cs.stonybrook.edu/cse320/hw3
-
-**Remember to use the `--strategy-option=theirs` flag with the `git merge`
-command as described in the `hw1` doc to avoid merge conflicts in the Gitlab
-CI file.**
-
 ## Directory Structure
 
 <pre>
@@ -840,69 +831,6 @@ void sf_show_heap();
 
 We have provided these functions to help you visualize your free lists and
 allocated blocks.
-
-# Unit Testing
-
-For this assignment, we will use Criterion to test your allocator. We have
-provided a basic set of test cases and you will have to write your own as well.
-
-You will use the Criterion framework alongside the provided helper functions to
-ensure your allocator works exactly as specified.
-
-In the `tests/sfmm_tests.c` file, there are nine unit test examples. These tests
-check for the correctness of `sf_malloc`, `sf_realloc`, and `sf_free`.
-We provide some basic assertions, but by no means are they exhaustive.  It is your
-job to ensure that your header/footer bits are set correctly and that blocks are
-allocated/freed as specified.
-
-## Compiling and Running Tests
-
-When you compile your program with `make`, a `sfmm_tests` executable will be
-created in the `bin` folder alongside the `main` executable. This can be run
-with `bin/sfmm_tests`. To obtain more information about each test run, you can
-use the verbose print option: `bin/sfmm_tests --verbose`.
-You might also find it helpful to suppress the running of tests concurrently
-by giving the `--j1` option.
-It is also possible to restrict the set of tests that are run.  For example,
-using `--filter suite_name/test_name` will only run the test named `test_name`
-in test suite `suite_name` (if there is such a test, otherwise it will run
-no tests).
-
-# Writing Criterion Tests
-
-The first test `malloc_an_int` tests `sf_malloc`.
-It allocates space for an integer and assigns a value to that space.
-It then runs an assertion to make sure that the space returned by `sf_malloc`
-was properly assigned.
-
-```c
-cr_assert(*x == 4, "sf_malloc failed to give proper space for an int!");
-```
-
-The string after the assertion only gets printed to the screen if the assertion
-failed (i.e. `*x != 4`). However, if there is a problem before the assertion,
-such as a SEGFAULT, the unit test will print the error to the screen and
-continue to run the rest of the unit tests.
-
-> :scream: You should definitely not regard the style in which the given tests
-> have been written as an example of the correct way to write such tests.
-> These handout tests have been deliberately coded in such a way as to to avoid
-> giving away too much information about how you might write the allocator code.
-> The tests contain many hard-coded numeric values and intentionally somewhat
-> obscure pointer manipulations.  You would do well **not** to follow this example,
-> but rather to devise functions and macros that make your own code easier to write
-> and to read.  Exactly how you might do this has been left for you to work out!
-
-For this assignment **<font color="red">you must write 5 additional unit tests
-which test new functionality and add them to `sfmm_tests.c` below the following
-comment:</font>**
-
-```
-//############################################
-//STUDENT UNIT TESTS SHOULD BE WRITTEN BELOW
-//DO NOT DELETE THESE COMMENTS
-//############################################
-```
 
 > For additional information on Criterion library, take a look at the official
 > documentation located [here](http://criterion.readthedocs.io/en/master/)! This
